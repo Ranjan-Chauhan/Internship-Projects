@@ -82,7 +82,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 const Navbar = ({ onSearch, onCategorySelect }) => {
   return (
-    <header className="bg-white shadow-md py-2">
+    <header className="bg-white shadow-md py-4">
       <div className="container mx-auto flex items-center justify-between px-4">
         {/* Left: Logo */}
         <div className="flex items-center space-x-6 px-4">
@@ -90,7 +90,7 @@ const Navbar = ({ onSearch, onCategorySelect }) => {
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA_PFMIWuIauPEhoMr2cFiYMRATZULlMN3ig&s"
               alt="Logo"
-              className="h-12 rounded-full"
+              className="h-14 rounded-full"
             />
           </Link>
           {/* Nav Links */}
@@ -115,6 +115,20 @@ const Navbar = ({ onSearch, onCategorySelect }) => {
               onClick={() => onCategorySelect("KIDS")}
             >
               KIDS
+            </Link>
+            <Link
+              to=""
+              className="hover:text-pink-600"
+              //   onClick={() => onCategorySelect("KIDS")}
+            >
+              HOME & LIVING
+            </Link>
+            <Link
+              to=""
+              className="hover:text-pink-600"
+              //   onClick={() => onCategorySelect("KIDS")}
+            >
+              BEAUTY
             </Link>
           </nav>
         </div>
