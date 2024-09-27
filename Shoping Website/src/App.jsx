@@ -1,34 +1,20 @@
-// import { useState } from "react";
-// import HomePage from "./Components/HomePage";
-// import Navbar from "./Components/Navbar";
-
-// function App() {
-//   const [count, setCount] = useState(0);
-
-//   return (
-//     <>
-//       {/* <Navbar /> */}
-//       <HomePage />
-//     </>
-//   );
-// }
-
-// export default App;
-
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import HomePage from "./Components/HomePage"; // Import your components
-import Navbar from "./Components/Navbar";
+import HomePage from "./Components/HomePage";
+import Cart from "./Components/Cart";
+import { CartProvider } from "./Context/CartContext";
 
-function App() {
+const App = () => {
   return (
-    <Router>
-      {/* Wrap the component tree inside BrowserRouter */}
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-      </Routes>
-    </Router>
+    <CartProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Cart" element={<Cart />} />
+        </Routes>
+      </Router>
+    </CartProvider>
   );
-}
+};
 
 export default App;

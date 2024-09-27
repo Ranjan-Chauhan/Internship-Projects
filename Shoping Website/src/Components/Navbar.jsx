@@ -1,91 +1,24 @@
-// import React from "react";
-// import LocalMallIcon from "@mui/icons-material/LocalMall";
-// import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-// import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-// import SearchIcon from "@mui/icons-material/Search";
-
-// const Navbar = () => {
-//   return (
-//     <header className="bg-white shadow-md py-2">
-//       <div className="container mx-auto flex items-center justify-between px-4">
-//         {/* Left: Logo */}
-//         <div className="flex items-center space-x-6 px-4">
-//           <img
-//             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA_PFMIWuIauPEhoMr2cFiYMRATZULlMN3ig&s"
-//             alt="Logo"
-//             className="h-12 rounded-full"
-//           />
-//           {/* Nav Links */}
-//           <nav className="flex space-x-6 text-gray-800 font-medium">
-//             <a href="#" className="hover:text-pink-600">
-//               MEN
-//             </a>
-//             <a href="#" className="hover:text-pink-600">
-//               WOMEN
-//             </a>
-//             <a href="#" className="hover:text-pink-600">
-//               KIDS
-//             </a>
-//             {/* <a href="#" className="hover:text-pink-600">
-//               HOME & LIVING
-//             </a> */}
-//             {/* <a href="#" className="hover:text-pink-600">
-//               BEAUTY
-//             </a> */}
-//             {/* <a href="#" className="relative hover:text-pink-600 studio-link">
-//               STUDIO <span className="text-xs text-pink-500 ml-1">NEW</span>
-//             </a> */}
-//           </nav>
-//         </div>
-
-//         <div className="flex items-center space-x-6 mr-6">
-//           {/* Search Bar */}
-//           <div className="flex items-center border rounded-md bg-gray-100 px-3 py-1.5 w-auto">
-//             <SearchIcon />
-//             <input
-//               type="text"
-//               placeholder="Search for products, brands and more"
-//               className="bg-transparent outline-none text-sm placeholder-gray-500 w-60 px-2"
-//             />
-//           </div>
-
-//           {/* Profile Icons */}
-//           <div className="flex items-center space-x-4 font-semibold text-sm px-1">
-//             <div className="text-gray-700 hover:text-pink-600">
-//               <PersonOutlineIcon className="" />
-//               Profile
-//             </div>
-//             <div className="text-gray-700 hover:text-pink-600">
-//               <FavoriteBorderIcon className="" />
-//               Wishlist
-//             </div>
-//             <div className="text-gray-700 hover:text-pink-600">
-//               <LocalMallIcon className="" />
-//               Bag
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </header>
-//   );
-// };
-
-// export default Navbar;
-
-/*...............................................................................*/
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
+import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SearchIcon from "@mui/icons-material/Search";
+import { CartContext } from "../Context/CartContext";
 
 const Navbar = ({ onSearch, onCategorySelect }) => {
+  const { cartItems } = useContext(CartContext);
+  const [counter, setCounter] = useState(5);
+
+  useEffect(() => {
+    setCounter(cartItems.length);
+  }, [cartItems]);
+
   return (
-    <header className="bg-white shadow-md py-4">
+    <header className="bg-white shadow-md py-3">
       <div className="container mx-auto flex items-center justify-between px-4">
-        {/* Left: Logo */}
-        <div className="flex items-center space-x-6 px-4">
+        {/* Logo */}
+        <div className="flex items-center space-x-10 px-4">
           <Link to="/" onClick={() => onCategorySelect(null)}>
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA_PFMIWuIauPEhoMr2cFiYMRATZULlMN3ig&s"
@@ -94,29 +27,29 @@ const Navbar = ({ onSearch, onCategorySelect }) => {
             />
           </Link>
           {/* Nav Links */}
-          <nav className="flex space-x-6 text-gray-800 font-medium">
+          <nav className="flex space-x-10 text-gray-800 font-medium">
             <Link
-              to="/"
+              to=""
               className="hover:text-pink-600"
               onClick={() => onCategorySelect("MEN")}
             >
               MEN
             </Link>
             <Link
-              to="/"
+              to=""
               className="hover:text-pink-600"
               onClick={() => onCategorySelect("WOMEN")}
             >
               WOMEN
             </Link>
             <Link
-              to="/"
+              to=""
               className="hover:text-pink-600"
               onClick={() => onCategorySelect("KIDS")}
             >
               KIDS
             </Link>
-            <Link
+            {/* <Link
               to=""
               className="hover:text-pink-600"
               //   onClick={() => onCategorySelect("KIDS")}
@@ -129,36 +62,51 @@ const Navbar = ({ onSearch, onCategorySelect }) => {
               //   onClick={() => onCategorySelect("KIDS")}
             >
               BEAUTY
-            </Link>
+            </Link> */}
           </nav>
         </div>
 
-        <div className="flex items-center space-x-6 mr-6">
+        <div className="flex items-center space-x-10 mr-6">
           {/* Search Bar */}
-          <div className="flex items-center border rounded-md bg-gray-100 px-3 py-1.5 w-auto">
-            <SearchIcon />
+          <div className="flex justify-center items-center border rounded-md bg-gray-100 px-3 py-1.5 w-96">
+            <SearchIcon className="flex text-gray-500 " />
             <input
               type="text"
               placeholder="Search for products, brands and more"
-              className="bg-transparent outline-none text-sm placeholder-gray-500 w-60 px-2"
+              className="bg-transparent outline-none text-sm placeholder-gray-500 w-96 px-4"
               onChange={(e) => onSearch(e.target.value)} // Handle search input
             />
           </div>
 
           {/* Profile Icons */}
-          <div className="flex items-center space-x-4 font-semibold text-sm px-1">
-            <div className="text-gray-700 hover:text-pink-600">
-              <PersonOutlineIcon className="mx-1" />
+          <div className="flex items-center space-x-10 font-semibold text-xs px-1">
+            <div className="relative text-gray-800 hover:text-pink-600">
+              <div>
+                <PersonOutlineIcon className="mx-1.5" />
+              </div>
               Profile
             </div>
-            <div className="text-gray-700 hover:text-pink-600">
-              <FavoriteBorderIcon className="mx-1" />
+            <div className="relative text-gray-800 hover:text-pink-600">
+              <div>
+                <FavoriteBorderIcon className="mx-2 text-sm" />
+              </div>
               Wishlist
             </div>
-            <div className="text-gray-700 hover:text-pink-600">
-              <LocalMallIcon className="mx-1" />
+
+            <Link
+              to="/Cart"
+              className="relative text-gray-800 hover:text-pink-600 "
+            >
+              <div>
+                <LocalMallOutlinedIcon />
+                {counter > 0 && (
+                  <span className="absolute -top-2 -right-7 bg-pink-600 text-white rounded-full text-xs h-5 w-5 flex items-center justify-center mx-4">
+                    {counter}
+                  </span>
+                )}
+              </div>
               Bag
-            </div>
+            </Link>
           </div>
         </div>
       </div>
