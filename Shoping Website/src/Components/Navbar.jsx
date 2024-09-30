@@ -29,6 +29,13 @@ const Navbar = ({ onSearch, onCategorySelect }) => {
           {/* Nav Links */}
           <nav className="flex space-x-10 text-gray-800 font-medium">
             <Link
+              to="/"
+              className="hover:text-pink-600"
+              onClick={() => onCategorySelect(null)}
+            >
+              HOME
+            </Link>
+            <Link
               to=""
               className="hover:text-pink-600"
               onClick={() => onCategorySelect("MEN")}
